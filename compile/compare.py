@@ -19,7 +19,7 @@ while True:
     # success, img = cap.read() #this line to be used when reading from webcam
     img = cap 
     imgS = cv2.resize(img,(0,0), None,0.25,0.25) #compress the image to enhance performance
-    imgS = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    imgS = cv2.cvtColor(imgS, cv2.COLOR_BGR2RGB)
     
     facesCurFrame = face_recognition.face_locations(imgS) #find the locations of all faces in the image
     encodesCurFrame = face_recognition.face_encodings(imgS, facesCurFrame) #find encodings of facees in the image
@@ -36,6 +36,7 @@ while True:
         if matches[matchIndex]:
             name = "VERIFIED"
             y1, x1, y2, x2 = faceLoc
+            y1,x1,y2,x2 = y1*4,x1*4,y2*4,x2*4 
             cv2.rectangle(img, (x1,y1), (x2,y2), (0,255,0),2)
             cv2.rectangle(img, (x1,y2-35), (x2,y2), (0,255,0), cv2.FILLED)
             cv2.putText(img, name, (x2, y2-6), cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),2)
@@ -43,6 +44,7 @@ while True:
         else:
             name = "UNKNOWN"
             y1, x1, y2, x2 = faceLoc
+            y1,x1,y2,x2 = y1*4,x1*4,y2*4,x2*4 
             cv2.rectangle(img, (x1,y1), (x2,y2), (0,0,255),2)
             cv2.rectangle(img, (x1,y2-35), (x2,y2), (0,0,255), cv2.FILLED)
             cv2.putText(img, name, (x2, y2-6), cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),2)

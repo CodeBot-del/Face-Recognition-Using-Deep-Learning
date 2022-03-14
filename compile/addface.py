@@ -2,7 +2,7 @@ import cv2
 import numpy as np 
 import face_recognition 
 import os
-import pandas as pd
+
 
 path = 'imagesRecognition'
 images = []
@@ -32,14 +32,11 @@ print('################------ Encoding Complete ------################')
 print(encodeListKnown)
 encodedFaces = encodeListKnown
 
-#save with numpy savetxt
-# np.savetxt('encodings.csv',encodeListKnown, delimiter=',' ) ## bad idea
 
-#save with pandas dataframe
-# df = pd.DataFrame(encodeListKnown)
-# df.to_csv('encodings.csv')    # Not soo bad
 
-#Save in a text file.....BEST SOLUTION
+
+
+# #Save in a text file.....BEST SOLUTION
 
 # new_array = encodeListKnown
 
