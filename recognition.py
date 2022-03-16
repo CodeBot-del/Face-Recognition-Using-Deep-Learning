@@ -34,7 +34,7 @@ print(encodeListKnown)
 
 #get the image to match with... For now we read an image, later on we will read from webcam (cv2.VideoCapture())
 
-cap = cv2.imread('2.jpg')  
+cap = cv2.imread('cena.jpeg')  
 
 while True:
     # success, img = cap.read() #this line to be used when reading from webcam
@@ -70,14 +70,15 @@ while True:
             name = "unknown" 
             y1,x1,y2,x2 = faceLoc
             # y1,x1,y2,x2 = y1*4,x1*4,y2*4,x2*4 
-            cv2.rectangle(img,(x1,y1),(x2,y2),(0,255,0),2)
-            cv2.rectangle(img, (x1,y2-35),(x2,y2),(0,255,0), cv2.FILLED) #starting point on height reduced by -35 to be a little lower so we can write the name on top of this rectangle
-            cv2.putText(img,name, (x2, y2-6), cv2.FONT_HERSHEY_COMPLEX,1,(0,0,255),2)
+            cv2.rectangle(img, (x1,y1), (x2,y2), (0,0,255),2)
+            cv2.rectangle(img, (x1,y2-35), (x2,y2), (0,0,255), cv2.FILLED) #starting point on height reduced by -35 to be a little lower so we can write the name on top of this rectangle
+            cv2.putText(img, name, (x2, y2-6), cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),2)
             
             
     
     # img = cv2.resize(img, (0, 0), fx=0.3, fy=0.3)  #reduce size by scale 
     # img = cv2.resize(img, (900,600))
+    
     cv2.imshow('Results',img)
     cv2.waitKey(1)
     

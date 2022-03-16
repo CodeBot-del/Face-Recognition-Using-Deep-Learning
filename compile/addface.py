@@ -29,7 +29,7 @@ def findEncodings(images):
                                          
 encodeListKnown = findEncodings(images)  
 print('################------ Encoding Complete ------################') 
-print(encodeListKnown)
+# print(encodeListKnown)
 encodedFaces = encodeListKnown
 
 
