@@ -13,7 +13,7 @@ encodingsKnown = encodedFaces
 # print(encodingsKnown)
 
 #get the match to perform recognition
-cap = cv2.imread('./imagesTest/students.jpg')
+cap = cv2.imread('./imagesTest/students4.jpg')
 
 while True:
     # success, img = cap.read() #this line to be used when reading from webcam
@@ -29,25 +29,25 @@ while True:
         faceDis = face_recognition.face_distance(encodingsKnown, encodeFace) #Find how much the faces differ between the image and the known
         
         matchIndex = np.argmin(faceDis) #take the lowest face distance to be the best match
-        if matchIndex < 0.5:            #accept match of lower than 0.5, for the sake of accuracy
+        if matchIndex < 0.12:            #accept match of lower than 0.1, for the sake of accuracy
             matchIndex = matchIndex
             
         #draw green boxes around verified faces 
         if matches[matchIndex]:
-            name = "AUTHORIZED"
+            name = "Authorized"
             y1, x1, y2, x2 = faceLoc
             # y1,x1,y2,x2 = y1*4,x1*4,y2*4,x2*4 
             cv2.rectangle(img, (x1,y1), (x2,y2), (0,255,0),2)
             cv2.rectangle(img, (x1,y2-35), (x2,y2), (0,255,0), cv2.FILLED)
-            cv2.putText(img, name, (x2, y2-6), cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),2)
+            cv2.putText(img, name, (x2, y2-6), cv2.FONT_HERSHEY_COMPLEX,0.5,(255,255,255),1)
             
         else:
-            name = "UNKNOWN"
+            name = "Unknown"
             y1, x1, y2, x2 = faceLoc
             # y1,x1,y2,x2 = y1*4,x1*4,y2*4,x2*4 
             cv2.rectangle(img, (x1,y1), (x2,y2), (0,0,255),2)
             cv2.rectangle(img, (x1,y2-35), (x2,y2), (0,0,255), cv2.FILLED)
-            cv2.putText(img, name, (x2, y2-6), cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),2)
+            cv2.putText(img, name, (x2, y2-6), cv2.FONT_HERSHEY_COMPLEX,0.5,(255,255,255),1)
             
     
     cv2.imshow('Results', img)
