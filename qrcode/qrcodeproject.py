@@ -9,12 +9,21 @@ cap = cv2.imread('card2.png')
 # cap.set(3,640)
 # cap.set(4,480)
 
+with open('data.txt') as f:
+    Authenticated = f.read().splitlines()
+
+
 while True:
     
     #in case of multiple barcodes
     for barcode in decode(cap):
         myData = barcode.data.decode('utf-8')
         print(myData)
+        
+        if myData in Authenticated:
+            print('Authorized')
+        else:
+            print('Un-Authorized')
         #get the polygon points from the decoder
         pts = np.array([barcode.polygon], np.int32)
         pts = pts.reshape((-1,1,2))
