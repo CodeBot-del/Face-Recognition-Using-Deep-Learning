@@ -13,7 +13,7 @@ encodingsKnown = encodedFaces
 # print(encodingsKnown)
 
 #get the match to perform recognition
-cap = cv2.imread('./imagesTest/assembly.jpg')
+cap = cv2.imread('./imagesTest/3.jpg')
 
 while True:
     # success, img = cap.read() #this line to be used when reading from webcam

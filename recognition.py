@@ -34,11 +34,11 @@ print(encodeListKnown)
 
 #get the image to match with... For now we read an image, later on we will read from webcam (cv2.VideoCapture())
 
-cap = cv2.imread('cena.jpeg')  
+cap = cv2.VideoCapture(0)
 
 while True:
-    # success, img = cap.read() #this line to be used when reading from webcam
-    img = cap  
+    success, img = cap.read() #this line to be used when reading from webcam
+    # img = cap 
     imgS = cv2.resize(img,(0,0),None,0.25,0.25) #compress the image to improve performance
     imgS = cv2.cvtColor(img,cv2.COLOR_BGR2RGB) 
     
@@ -50,7 +50,7 @@ while True:
         faceDis = face_recognition.face_distance(encodeListKnown, encodeFace)  #Find how much the faces differ between the image and the known
         # print(faceDis)
         matchIndex = np.argmin(faceDis)  #take the lowest face distance to be the match 
-        if matchIndex < 0.5:    # accept match index lower than 0.5... for the sake of accuracy
+        if matchIndex < 0.3:    # accept match index lower than 0.5... for the sake of accuracy
             matchIndex = matchIndex
         
         #hii code apa chini ni ya kuchora zile boxes za green kwa wwatu verified, na red kwa wasiokua verified
